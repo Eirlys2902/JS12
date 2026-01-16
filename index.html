@@ -59,7 +59,7 @@
             transform: translateX(-50%);
             text-decoration: none;
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 3px solid rgba(255, 255, 255, 0.8);
             font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
@@ -156,7 +156,7 @@
 
         @media(max-width: 800px) {
             h1 {
-                font-size: 20px;
+                font-size: 32px;
                 top: 35%;
                 white-space: normal;
                 text-align: center;
@@ -166,11 +166,11 @@
 
             .btn {
                 padding: 12px;
-                width: 110px;
-                font-size: 10px;
+                width: 140px;
+                font-size: 12px;
                 top: 60%;
-                letter-spacing: 1px;
-                border-width: 1px;
+                letter-spacing: 2px;
+                border-width: 2px;
             }
 
             .side {
@@ -179,7 +179,10 @@
                 justify-content: center;
                 align-items: center;
             }
-            
+            .side.right {
+                background-position: center center;
+            }
+
             .side h1, .side .btn {
                 position: static;
                 transform: none;
