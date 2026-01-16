@@ -178,6 +178,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                transition: width 0.5s ease-in-out;
             }
             .side.right {
                 background-position: center 65%;
@@ -215,13 +216,17 @@
         const container = document.querySelector('.container');
         const left = document.querySelector('.left');
         const right = document.querySelector('.right');
+        const isMobile = window.matchMedia("(max-width: 800px)").matches;
+
         function setupHover(element, className) {
-            element.addEventListener('mouseenter', function() {
-                container.classList.add(className);
-            });
-            element.addEventListener('mouseleave', function() {
-                container.classList.remove(className);
-            });
+            if (!isMobile) {
+                element.addEventListener('mouseenter', function() {
+                    container.classList.add(className);
+                });
+                element.addEventListener('mouseleave', function() {
+                    container.classList.remove(className);
+                });
+            }
             element.addEventListener('click', function() {
                 if (className === 'hover-left') {
                     container.classList.remove('hover-right');
