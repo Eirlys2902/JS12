@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JS11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        :root {
+            --left-overlay: linear-gradient(to right, rgba(212, 20, 90, 0.85), rgba(255, 165, 0, 0.5)); 
+            --right-overlay: linear-gradient(to left, rgba(48, 20, 90, 0.9), rgba(0, 200, 255, 0.4));
+            
+            --hover-width: 60%;
+            --other-width: 40%;
+            --speed: 1000ms;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            font-style: italic;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            z-index: 10;
+            transition: all var(--speed) ease-in-out;
+        }
+
+        .btn {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 50%;
+            top: 55%;
+            transform: translateX(-50%);
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            width: 224px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.1);
+            z-index: 10;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 25px rgba(255,255,255,0.4);
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #333;
+        }
+
+        .side {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all var(--speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .side.left {
+            left: 0;
+            background: url('https://i.pinimg.com/736x/33/9f/6e/339f6e3cf606e2487d1ccc4b7496187e.jpg'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .side.left::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--left-overlay);
+            transition: opacity 0.8s ease;
+        }
+
+        .side.right {
+            right: 0;
+            background: url('https://i.pinimg.com/736x/ef/c7/d1/efc7d197137df229e912f2155fe204fd.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .side.right::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--right-overlay);
+            transition: opacity 0.8s ease;
+        }
+
+        .hover-left .left {
+            width: var(--hover-width);
+        }
+
+        .hover-left .right {
+            width: var(--other-width);
+        }
+        
+        .hover-left .left::before {
+            opacity: 0.2;
+        }
+
+        .hover-right .right {
+            width: var(--hover-width);
+        }
+
+        .hover-right .left {
+            width: var(--other-width);
+        }
+
+        .hover-right .right::before {
+            opacity: 0.2;
+        }
+
+        @media(max-width: 800px) {
+            h1 {
+                font-size: 20px;
+                top: 25%;
+                white-space: normal;
+                text-align: center;
+                width: 90%;
+                line-height: 1.2;
+            }
+
+            .btn {
+                padding: 12px;
+                width: 110px;
+                font-size: 10px;
+                top: 50%;
+                letter-spacing: 1px;
+                border-width: 1px;
+            }
+
+            .side {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .side h1, .side .btn {
+                position: static;
+                transform: none;
+                margin: 10px 0;
+                left: auto;
+                top: auto;
+            }
+            
+            .side {
+                transition: width 0.5s ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="side left">
+            <h1>The Sun</h1>
+            <a href="#" class="btn">Shine Bright</a>
+        </div>
+
+        <div class="side right">
+            <h1>The Moon</h1>
+            <a href="#" class="btn">Dream On</a>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+
+        function setupHover(element, className) {
+            element.addEventListener('mouseenter', function() {
+                container.classList.add(className);
+            });
+            element.addEventListener('mouseleave', function() {
+                container.classList.remove(className);
+            });
+        }
+
+        setupHover(left, 'hover-left');
+        setupHover(right, 'hover-right');
+    </script>
+</body>
+</html>
